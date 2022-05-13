@@ -9,7 +9,7 @@
       v-for="item in items"
       :key="item.ItemId"
     >
-      <a-card hoverable>
+      <a-card hoverable v-on:click="goToItemDetail(item.ItemId)">
         <template #cover>
           <img
             alt="example"
@@ -35,6 +35,9 @@ export default defineComponent({
   },
   methods: {
     ...mapActions(['fetchItemList']),
+    goToItemDetail(itemId: never) {
+      this.$router.push({ path: `/itemDetail/${itemId}` })
+    },
   },
   created() {
     this.fetchItemList()

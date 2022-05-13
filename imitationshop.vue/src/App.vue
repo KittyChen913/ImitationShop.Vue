@@ -7,7 +7,7 @@
     </a-layout-header>
     <a-layout-content :style="{ padding: '50px 50px', marginTop: '64px' }">
       <div :style="{ background: '#fff', padding: '24px', minHeight: '400px' }">
-        <items></items>
+        <router-view />
       </div>
     </a-layout-content>
     <a-layout-footer :style="{ textAlign: 'center' }">
@@ -18,11 +18,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Items from './components/Items.vue'
 
 export default defineComponent({
   name: 'App',
-  components: { Items },
+  components: {},
 })
 </script>
 
