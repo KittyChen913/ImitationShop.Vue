@@ -2,7 +2,7 @@
   <h2>商品詳情頁</h2>
   <h3>{{ $route.params.itemId }}</h3>
   <a-row justify="center">
-    <a-col :span="12">
+    <a-col :xs="24" :sm="12">
       <a-image-preview-group>
         <a-row justify="center">
           <a-col>
@@ -19,7 +19,7 @@
         </a-row>
       </a-image-preview-group>
     </a-col>
-    <a-col :span="12">
+    <a-col :xs="24" :sm="12">
       <a-form>
         <a-form-item>
           <h2 class="ant-form-text">{{ itemDetail.ItemName }}</h2>
