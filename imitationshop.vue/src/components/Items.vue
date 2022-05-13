@@ -1,6 +1,5 @@
 <template>
   <h2>商品列表</h2>
-  <div>{{ greeting }}</div>
   <a-row :gutter="8">
     <a-col
       :xs="10"
@@ -8,7 +7,7 @@
       :md="6"
       :lg="4"
       v-for="item in items"
-      :key="item.itemId"
+      :key="item.ItemId"
     >
       <a-card hoverable>
         <template #cover>
@@ -17,8 +16,8 @@
             src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
           />
         </template>
-        <a-card-meta v-bind:title="item.itemName">
-          <template #description>NT${{ item.itemPrice }}</template>
+        <a-card-meta v-bind:title="item.ItemName">
+          <template #description>NT${{ item.Price }}</template>
         </a-card-meta>
       </a-card>
     </a-col>
@@ -38,7 +37,7 @@ export default defineComponent({
     ...mapActions(['fetchItemList']),
   },
   created() {
-    this.fetchItemList({ id: '78' })
+    this.fetchItemList()
   },
 })
 </script>

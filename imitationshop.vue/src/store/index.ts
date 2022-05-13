@@ -12,7 +12,7 @@ export default createStore({
     }
   },
   actions: {
-    fetchItemList(context, payload) {
+    fetchItemList(context) {
       fetch('https://localhost:7227/api/Items')
         .then(response => response.json())
         .then(data => context.commit('setItems', data))
