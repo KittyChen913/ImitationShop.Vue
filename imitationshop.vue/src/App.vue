@@ -1,9 +1,25 @@
 <template>
   <a-layout>
     <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
-      <div class="logo">
-        <img alt="Vue logo" src="./assets/logo.png" width="50" />
-      </div>
+      <a-row>
+        <a-col :span="4">
+          <div class="logo">
+            <img alt="Vue logo" src="./assets/logo.png" width="50" />
+          </div>
+        </a-col>
+        <a-col :span="4" :offset="16">
+          <a-menu
+            v-model:selectedKeys="selectedKeys"
+            theme="dark"
+            mode="horizontal"
+            :style="{ lineHeight: '64px' }"
+          >
+            <a-menu-item key="1"
+              ><router-link to="/Store">我的賣場</router-link></a-menu-item
+            >
+          </a-menu>
+        </a-col>
+      </a-row>
     </a-layout-header>
     <a-layout-content :style="{ padding: '50px 50px', marginTop: '64px' }">
       <div :style="{ background: '#fff', padding: '24px', minHeight: '400px' }">
