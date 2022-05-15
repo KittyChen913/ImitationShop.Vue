@@ -31,7 +31,9 @@
           <span class="ant-form-text">{{ itemDetail.Amount }}</span>
         </a-form-item>
         <a-form-item label="上架時間">
-          <span class="ant-form-text">{{ itemDetail.CreateDate }}</span>
+          <span class="ant-form-text">{{
+            formattedDateTime(itemDetail.CreateDate)
+          }}</span>
         </a-form-item>
         <a-form-item label="商品詳情">
           <span class="ant-form-text">{{ itemDetail.Description }}</span>
@@ -44,6 +46,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { mapState, mapActions } from 'vuex'
+import moment from 'moment'
 
 export default defineComponent({
   name: 'ItemDetail-page',
@@ -52,6 +55,9 @@ export default defineComponent({
   },
   methods: {
     ...mapActions(['fetchItemDetail']),
+    formattedDateTime(dateTime: moment.MomentInput) {
+      return moment(dateTime).format('YYYY/MM/DD HH:mm:SS')
+    },
   },
   created() {
     this.fetchItemDetail(this.$route.params.itemId)
