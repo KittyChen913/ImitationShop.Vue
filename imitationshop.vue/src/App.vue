@@ -3,7 +3,7 @@
     <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
       <a-row>
         <a-col :span="4">
-          <div class="logo">
+          <div class="logo" @click="goToHomePage">
             <img alt="Vue logo" src="./assets/logo.png" width="50" />
           </div>
         </a-col>
@@ -38,6 +38,11 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'App',
   components: {},
+  methods: {
+    goToHomePage() {
+      this.$router.push({ path: '/' })
+    },
+  },
 })
 </script>
 

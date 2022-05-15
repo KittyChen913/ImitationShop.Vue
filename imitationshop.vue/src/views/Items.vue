@@ -9,7 +9,7 @@
       v-for="item in items"
       :key="item.ItemId"
     >
-      <a-card hoverable v-on:click="goToItemDetail(item.ItemId)">
+      <a-card hoverable @click="goToItemDetail(item.ItemId)">
         <template #cover>
           <img
             alt="example"
