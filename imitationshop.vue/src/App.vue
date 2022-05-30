@@ -13,8 +13,5 @@ export default defineComponent({
 })
 </script>
 
-<style>
-[data-theme='dark'] .site-layout .site-layout-background {
-  background: #141414;
-}
+<style lang="less">
 </style>

@@ -46,7 +46,7 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
+<style  lang="less" scoped>
 #components-layout-demo-fixed .logo {
   width: 120px;
   height: 31px;
