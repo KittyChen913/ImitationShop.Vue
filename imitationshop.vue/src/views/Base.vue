@@ -1,7 +1,7 @@
 <template>
   <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
     <a-row>
-      <a-col :span="4">
+      <a-col :span="2">
         <router-link to="/">
           <img
             class="image"
@@ -11,7 +11,10 @@
           />
         </router-link>
       </a-col>
-      <a-col :span="4" :offset="16">
+      <a-col :span="4" :offset="14">
+        <h4 style="color: #48d1cc">{{ userInfo.UserName }}</h4>
+      </a-col>
+      <a-col :span="4">
         <a-menu
           v-model:selectedKeys="selectedKeys"
           theme="dark"
@@ -40,25 +43,15 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { mapState } from 'vuex'
 
 export default defineComponent({
   name: 'Base-page',
+  computed: {
+    ...mapState(['userInfo']),
+  },
 })
 </script>
 
-<style  lang="less" scoped>
-#components-layout-demo-fixed .logo {
-  width: 120px;
-  height: 31px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px 24px 16px 0;
-  float: left;
-}
-.site-layout .site-layout-background {
-  background: #fff;
-}
-
-.logo:hover .image {
-  opacity: 1;
-}
+<style lang="less" scoped>
 </style>

@@ -1,9 +1,12 @@
 import { createStore } from 'vuex'
+import { v4 as uuidv4 } from 'uuid'
+import router from '@/router'
 
 export default createStore({
   state: {
     items: {},
-    itemDetail: {}
+    itemDetail: {},
+    userInfo: {},
   },
   getters: {
   },
@@ -13,6 +16,9 @@ export default createStore({
     },
     setItemDetail(state, payload) {
       state.itemDetail = payload
+    },
+    setUserInfo(state, payload) {
+      state.userInfo = payload
     }
   },
   actions: {
@@ -25,6 +31,38 @@ export default createStore({
       fetch('https://localhost:7227/api/Items/' + payload)
         .then(response => response.json())
         .then(data => context.commit('setItemDetail', data))
+    },
+    UserLogin(context, payload) {
+      fetch('https://localhost:7227/api/Auth/UserLogin', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({ "RequestId": uuidv4(), "Data": payload })
+      })
+        .then(async response => {
+          const responseData = await response.json()
+          if (!response.ok) {
+            switch (responseData.ErrorCode) {
+              case 'U0002':
+                alert('This user does not exist.')
+                break;
+              case 'U0003':
+                alert('The account password is incorrect. Please try again.')
+                break;
+              default:
+                alert('Unexpected error, please contact customer service.')
+                break;
+            }
+            console.log(responseData.ErrorCode, responseData.ErrorMessage)
+          } else {
+            alert('Welcome 【' + responseData.Data.UserName + '】 to login.')
+            context.commit('setUserInfo', responseData.Data)
+            router.push({ path: `/` })
+          }
+        })
+        .catch(error => console.log(error))
     }
   },
   modules: {
