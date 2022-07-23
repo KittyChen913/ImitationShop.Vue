@@ -11,24 +11,40 @@
           />
         </router-link>
       </a-col>
-      <a-col :span="4" :offset="14">
-        <h4 style="color: #48d1cc">{{ userProfile.UserName }}</h4>
-      </a-col>
-      <a-col :span="4">
-        <a-menu
-          v-model:selectedKeys="selectedKeys"
-          theme="dark"
-          mode="horizontal"
-          :style="{ lineHeight: '64px' }"
-        >
-          <a-menu-item key="1"
-            ><router-link to="/Store">我的賣場</router-link></a-menu-item
+      <template v-if="userProfile.UserName === undefined">
+        <a-col :span="2" :offset="20">
+          <a-menu
+            v-model:selectedKeys="selectedKeys"
+            theme="dark"
+            mode="horizontal"
+            :style="{ lineHeight: '64px' }"
           >
-          <a-menu-item key="2"
-            ><router-link to="/Login">登入</router-link></a-menu-item
+            <a-menu-item key="1"
+              ><router-link to="/Login">登入</router-link></a-menu-item
+            >
+          </a-menu>
+        </a-col>
+      </template>
+      <template v-else>
+        <a-col :span="4" :offset="14">
+          <h4 style="color: #48d1cc">歡迎 {{ userProfile.UserName }}</h4>
+        </a-col>
+        <a-col :span="4">
+          <a-menu
+            v-model:selectedKeys="selectedKeys"
+            theme="dark"
+            mode="horizontal"
+            :style="{ lineHeight: '64px' }"
           >
-        </a-menu>
-      </a-col>
+            <a-menu-item key="1"
+              ><router-link to="/Store">我的賣場</router-link></a-menu-item
+            >
+            <a-menu-item key="2"
+              ><router-link  to="/" @click="Logout">登出</router-link></a-menu-item
+            >
+          </a-menu>
+        </a-col>
+      </template>
     </a-row>
   </a-layout-header>
   <a-layout-content :style="{ padding: '50px 50px', marginTop: '64px' }">
@@ -44,6 +60,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { mapState } from 'vuex'
+import router from '@/router'
 
 export default defineComponent({
   name: 'Base-page',
@@ -52,8 +69,14 @@ export default defineComponent({
   },
   created() {
     if (this.userProfile.UserName === undefined) {
-      this.userProfile.UserName =  window.localStorage.UserName
+      this.userProfile.UserName = localStorage.UserName
     }
+  },
+  methods: {
+    Logout() {
+      localStorage.clear()
+      router.go(0)
+    },
   },
 })
 </script>

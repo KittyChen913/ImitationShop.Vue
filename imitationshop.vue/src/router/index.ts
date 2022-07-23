@@ -47,7 +47,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   if (to.meta.requiredAuth) {
-    const loginToken = window.localStorage.Token
+    const loginToken = localStorage.Token
     if (loginToken === undefined) {
       alert('you are not logged in or your session has expired. redirecting to the login page.')
       return next({ path: "/login" });

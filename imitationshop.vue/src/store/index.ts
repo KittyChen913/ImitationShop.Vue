@@ -21,8 +21,8 @@ export default createStore({
       state.userProfile = payload
     },
     saveLocalStorage(state, payload) {
-      window.localStorage.setItem("Token", payload.Token);
-      window.localStorage.setItem("UserName", payload.UserName);
+      localStorage.setItem("Token", payload.Token);
+      localStorage.setItem("UserName", payload.UserName);
     },
   },
   actions: {
