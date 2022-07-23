@@ -6,9 +6,13 @@ export default createStore({
   state: {
     items: {},
     itemDetail: {},
-    userInfo: {},
+    userProfile: {},
+    token: null
   },
   getters: {
+    getUserProfile(state) {
+      return state.userProfile;
+    }
   },
   mutations: {
     setItems(state, payload) {
@@ -17,9 +21,12 @@ export default createStore({
     setItemDetail(state, payload) {
       state.itemDetail = payload
     },
-    setUserInfo(state, payload) {
-      state.userInfo = payload
-    }
+    setUserProfile(state, payload) {
+      state.userProfile = payload
+    },
+    saveToken(state, payload) {
+      state.token = payload
+    },
   },
   actions: {
     fetchItemList(context) {
@@ -58,7 +65,9 @@ export default createStore({
             console.log(responseData.ErrorCode, responseData.ErrorMessage)
           } else {
             alert('Welcome 【' + responseData.Data.UserName + '】 to login.')
-            context.commit('setUserInfo', responseData.Data)
+            context.commit('setUserProfile', responseData.Data)
+            context.commit('saveToken', responseData.Data.Token)
+
             router.push({ path: `/` })
           }
         })

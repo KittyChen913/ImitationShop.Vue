@@ -12,7 +12,7 @@
         </router-link>
       </a-col>
       <a-col :span="4" :offset="14">
-        <h4 style="color: #48d1cc">{{ userInfo.UserName }}</h4>
+        <h4 style="color: #48d1cc">{{ userProfile.UserName }}</h4>
       </a-col>
       <a-col :span="4">
         <a-menu
@@ -48,7 +48,7 @@ import { mapState } from 'vuex'
 export default defineComponent({
   name: 'Base-page',
   computed: {
-    ...mapState(['userInfo']),
+    ...mapState(['userProfile']),
   },
 })
 </script>
