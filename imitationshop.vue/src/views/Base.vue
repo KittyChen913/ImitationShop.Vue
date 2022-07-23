@@ -50,6 +50,11 @@ export default defineComponent({
   computed: {
     ...mapState(['userProfile']),
   },
+  created() {
+    if (this.userProfile.UserName === undefined) {
+      this.userProfile.UserName =  window.localStorage.UserName
+    }
+  },
 })
 </script>
 

@@ -6,13 +6,9 @@ export default createStore({
   state: {
     items: {},
     itemDetail: {},
-    userProfile: {},
-    token: null
+    userProfile: {}
   },
   getters: {
-    getUserProfile(state) {
-      return state.userProfile;
-    }
   },
   mutations: {
     setItems(state, payload) {
@@ -24,8 +20,9 @@ export default createStore({
     setUserProfile(state, payload) {
       state.userProfile = payload
     },
-    saveToken(state, payload) {
-      state.token = payload
+    saveLocalStorage(state, payload) {
+      window.localStorage.setItem("Token", payload.Token);
+      window.localStorage.setItem("UserName", payload.UserName);
     },
   },
   actions: {
@@ -66,7 +63,7 @@ export default createStore({
           } else {
             alert('Welcome 【' + responseData.Data.UserName + '】 to login.')
             context.commit('setUserProfile', responseData.Data)
-            context.commit('saveToken', responseData.Data.Token)
+            context.commit('saveLocalStorage', responseData.Data)
 
             router.push({ path: `/` })
           }

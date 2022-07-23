@@ -4,7 +4,6 @@ import ItemDetail from '../views/ItemDetail.vue'
 import Store from '../views/Store.vue'
 import Login from '../views/Login.vue'
 import Base from '../views/Base.vue'
-import vuexStore from '../store/index'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -48,8 +47,8 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   if (to.meta.requiredAuth) {
-    const userProfile = vuexStore.getters["getUserProfile"];
-    if (userProfile.UserId === undefined) {
+    const loginToken = window.localStorage.Token
+    if (loginToken === undefined) {
       alert('you are not logged in or your session has expired. redirecting to the login page.')
       return next({ path: "/login" });
     } else {
