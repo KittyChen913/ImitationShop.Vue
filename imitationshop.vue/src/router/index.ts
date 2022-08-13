@@ -3,6 +3,7 @@ import Items from '../views/Items.vue'
 import ItemDetail from '../views/ItemDetail.vue'
 import Store from '../views/Store.vue'
 import Login from '../views/Login.vue'
+import Register from '../views/Register.vue'
 import Base from '../views/Base.vue'
 
 const routes: Array<RouteRecordRaw> = [
@@ -36,6 +37,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login',
     name: 'login',
     component: Login,
+    meta: { requiredAuth: false }
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: Register,
     meta: { requiredAuth: false }
   },
 ]

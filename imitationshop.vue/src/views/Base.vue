@@ -12,7 +12,7 @@
         </router-link>
       </a-col>
       <template v-if="userProfile.UserName === undefined">
-        <a-col :span="2" :offset="20">
+        <a-col :span="4" :offset="18">
           <a-menu
             v-model:selectedKeys="selectedKeys"
             theme="dark"
@@ -20,6 +20,9 @@
             :style="{ lineHeight: '64px' }"
           >
             <a-menu-item key="1"
+              ><router-link to="/Register">註冊</router-link></a-menu-item
+            >
+            <a-menu-item key="2"
               ><router-link to="/Login">登入</router-link></a-menu-item
             >
           </a-menu>
@@ -40,7 +43,9 @@
               ><router-link to="/Store">我的賣場</router-link></a-menu-item
             >
             <a-menu-item key="2"
-              ><router-link  to="/" @click="Logout">登出</router-link></a-menu-item
+              ><router-link to="/" @click="Logout"
+                >登出</router-link
+              ></a-menu-item
             >
           </a-menu>
         </a-col>

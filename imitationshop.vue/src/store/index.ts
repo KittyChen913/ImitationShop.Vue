@@ -69,6 +69,34 @@ export default createStore({
           }
         })
         .catch(error => console.log(error))
+    },
+    UserRegister(context, payload) {
+      fetch('https://localhost:7227/api/Auth/UserRegister', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({ "RequestId": uuidv4(), "Data": payload })
+      })
+        .then(async response => {
+          const responseData = await response.json()
+          if (!response.ok) {
+            switch (responseData.ErrorCode) {
+              case 'U0001':
+                alert('This user name already exists. Please try another one.')
+                break;
+              default:
+                alert('Unexpected error, please contact customer service.')
+                break;
+            }
+            console.log(responseData.ErrorCode, responseData.ErrorMessage)
+          } else {
+            alert('Account registered successfully. Please login.')
+            router.push({ path: `/login` })
+          }
+        })
+        .catch(error => console.log(error))
     }
   },
   modules: {
