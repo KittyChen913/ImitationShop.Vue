@@ -4,11 +4,18 @@ import router from '@/router'
 
 export default createStore({
   state: {
-    items: {},
+    items: [],
     itemDetail: {},
-    userProfile: {}
+    userProfile: {},
+    storeItemList: [],
   },
   getters: {
+    getStoreItemList(state) {
+      return state.storeItemList.map((store: any) => ({
+        storeId: store.ItemId,
+        itemList: state.items.find((item: any) => item.ItemId === store.ItemId)
+      }));
+    }
   },
   mutations: {
     setItems(state, payload) {
@@ -20,9 +27,13 @@ export default createStore({
     setUserProfile(state, payload) {
       state.userProfile = payload
     },
+    setStore(state, payload) {
+      state.storeItemList = payload
+    },
     saveLocalStorage(state, payload) {
       localStorage.setItem("Token", payload.Token);
       localStorage.setItem("UserName", payload.UserName);
+      localStorage.setItem("UserId", payload.UserId);
     },
   },
   actions: {
@@ -35,6 +46,16 @@ export default createStore({
       fetch('https://localhost:7227/api/Items/' + payload)
         .then(response => response.json())
         .then(data => context.commit('setItemDetail', data))
+    },
+    fetchStoreItemList(context) {
+      fetch('https://localhost:7227/api/Store/' + localStorage.UserId, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.Token
+        },
+      })
+        .then(response => response.json())
+        .then(data => context.commit('setStore', data))
     },
     UserLogin(context, payload) {
       fetch('https://localhost:7227/api/Auth/UserLogin', {
