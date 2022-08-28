@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import { v4 as uuidv4 } from 'uuid'
 import router from '@/router'
+import authInterceptor from '../context/AuthInterceptor'
 
 export default createStore({
   state: {
@@ -37,6 +38,7 @@ export default createStore({
     },
   },
   actions: {
+    authInterceptor,
     fetchItemList(context) {
       fetch('https://localhost:7227/api/Items')
         .then(response => response.json())
@@ -48,12 +50,7 @@ export default createStore({
         .then(data => context.commit('setItemDetail', data))
     },
     fetchStoreItemList(context) {
-      fetch('https://localhost:7227/api/Store/' + localStorage.UserId, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + localStorage.Token
-        },
-      })
+      fetch('https://localhost:7227/api/Store/' + localStorage.UserId)
         .then(response => response.json())
         .then(data => context.commit('setStore', data))
     },

@@ -10,7 +10,8 @@
   "dependencies": {
     "ant-design-vue": "^3.2.3",
     "core-js": "^3.8.3",
-    "moment": "^2.29.3",
+    "fetch-intercept": "^2.4.0",
+    "moment": "^2.29.4",
     "uuid": "^8.3.2",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
