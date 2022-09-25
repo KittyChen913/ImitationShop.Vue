@@ -6,7 +6,6 @@
     :model="formState"
     :rules="rules"
     v-bind="layout"
-    @submit="onSubmit"
     @finish="handleFinish"
     @finishFailed="handleFinishFailed"
   >
@@ -80,7 +79,7 @@ export default defineComponent({
     }
 
     const rules: Record<string, Rule[]> = {
-      pass: [{ required: true, validator: validatePass, trigger: 'change' }],
+      Password: [{ required: true, validator: validatePass, trigger: 'change' }],
       CheckPass: [{ validator: validatePass2, trigger: 'change' }],
       UserName: [{ required: true, trigger: 'change' }],
       MailAddress: [{ type: 'email', trigger: 'change' }],
@@ -91,12 +90,9 @@ export default defineComponent({
     }
 
     const store = useStore()
-    const onSubmit = (e: Event) => {
-      console.log('Submit:', e)
-      store.dispatch('UserRegister', formState)
-    }
 
     const handleFinish = (values: FormState) => {
+      store.dispatch('UserRegister', formState)
       console.log(values, formState)
     }
 
@@ -113,7 +109,6 @@ export default defineComponent({
       formRef,
       rules,
       layout,
-      onSubmit,
       handleFinishFailed,
       handleFinish,
       resetForm,
