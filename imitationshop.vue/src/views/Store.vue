@@ -1,5 +1,18 @@
 <template>
   <h2>我的賣場</h2>
+  <a-row
+    style="border-style: groove; margin: 10px; padding: 10px"
+    type="flex"
+    justify="space-between"
+    align="bottom"
+  >
+    <a-col :span="2" :offset="22">
+      <a-button type="primary" @click="$router.push('/addItem')"
+        >Add 商品</a-button
+      >
+    </a-col>
+  </a-row>
+
   <a-list
     item-layout="vertical"
     size="large"

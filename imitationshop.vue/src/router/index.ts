@@ -5,6 +5,7 @@ import Store from '../views/Store.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Base from '../views/Base.vue'
+import AddItem from '../views/AddItem.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -29,6 +30,12 @@ const routes: Array<RouteRecordRaw> = [
         path: '/store',
         name: 'store',
         component: Store,
+        meta: { requiredAuth: true }
+      },
+      {
+        path: '/addItem',
+        name: 'addItem',
+        component: AddItem,
         meta: { requiredAuth: true }
       },
     ]

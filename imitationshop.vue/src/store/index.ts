@@ -54,13 +54,27 @@ export default createStore({
         .then(response => response.json())
         .then(data => context.commit('setStore', data))
     },
+    AddStoreItem(context, payload) {
+      fetch('https://localhost:7227/api/Store/AddStoreItem', {
+        method: "POST",
+        body: JSON.stringify({
+          "RequestId": uuidv4(), "Data": { "Item": payload, "StoreMappingInfo": { "UserId": localStorage.UserId } }
+        })
+      })
+        .then(async response => {
+          const responseData = await response.json()
+          if (!response.ok) {
+            alert(responseData.ErrorMessage)
+          }
+          else {
+            alert('This item add successfully.')
+            router.push({ path: `/Store` })
+          }
+        })
+    },
     UserLogin(context, payload) {
       fetch('https://localhost:7227/api/Auth/UserLogin', {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
         body: JSON.stringify({ "RequestId": uuidv4(), "Data": payload })
       })
         .then(async response => {
