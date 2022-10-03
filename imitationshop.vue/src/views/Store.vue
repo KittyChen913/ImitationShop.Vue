@@ -70,9 +70,11 @@ export default defineComponent({
     ...mapGetters(['getStoreItemList']),
   },
   methods: {
+    ...mapActions(['fetchItemList']),
     ...mapActions(['fetchStoreItemList']),
   },
   created() {
+    this.fetchItemList()
     this.fetchStoreItemList()
   },
   setup() {

@@ -68,7 +68,7 @@ export default createStore({
           }
           else {
             alert('This item add successfully.')
-            router.push({ path: `/Store` })
+            router.push({ path: `/Store` }).then(() => { window.location.origin })
           }
         })
     },

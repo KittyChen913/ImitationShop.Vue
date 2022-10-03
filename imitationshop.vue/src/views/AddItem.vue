@@ -67,13 +67,11 @@ export default defineComponent({
     }
     const store = useStore()
     const handleFinish = (values: FormState) => {
-      alert('handleFinish')
       store.dispatch('AddStoreItem', formState)
       console.log(values, formState)
     }
 
     const handleFinishFailed = (errors: any) => {
-      alert('handleFinishFailed')
       console.log(errors)
     }
 
