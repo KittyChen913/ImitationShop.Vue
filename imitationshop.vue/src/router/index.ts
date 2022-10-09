@@ -6,6 +6,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Base from '../views/Base.vue'
 import AddItem from '../views/AddItem.vue'
+import UpdateItem from '../views/UpdateItem.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -36,6 +37,12 @@ const routes: Array<RouteRecordRaw> = [
         path: '/addItem',
         name: 'addItem',
         component: AddItem,
+        meta: { requiredAuth: true }
+      },
+      {
+        path: '/updateItem/:itemId',
+        name: 'updateItem',
+        component: UpdateItem,
         meta: { requiredAuth: true }
       },
     ]

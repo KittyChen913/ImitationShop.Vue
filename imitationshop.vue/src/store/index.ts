@@ -49,6 +49,24 @@ export default createStore({
         .then(response => response.json())
         .then(data => context.commit('setItemDetail', data))
     },
+    UpdateItem(context, payload) {
+      fetch('https://localhost:7227/api/Items/' + payload.ItemId, {
+        method: "PUT",
+        body: JSON.stringify({
+          "RequestId": uuidv4(), "Data": payload
+        })
+      })
+        .then(async response => {
+          const responseData = await response.json()
+          if (!response.ok) {
+            alert(responseData.ErrorMessage)
+          }
+          else {
+            alert('This item update successfully.')
+            router.push({ path: `/Store` }).then(() => { window.location.origin })
+          }
+        })
+    },
     fetchStoreItemList(context) {
       fetch('https://localhost:7227/api/Store/' + localStorage.UserId)
         .then(response => response.json())

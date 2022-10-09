@@ -39,6 +39,12 @@
             </span>
             <setting-outlined key="setting" />
             <edit-outlined key="edit" />
+            <edit-outlined
+              key="edit"
+              @click="
+                $router.push({ path: `/updateItem/${item.itemList.ItemId}` })
+              "
+            />
             <delete-outlined key="delete" @click="DeleteStoreItem(item)" />
           </template>
         </a-card>
