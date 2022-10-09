@@ -25,7 +25,7 @@
       />
     </a-form-item>
     <a-form-item name="Description" label="商品描述">
-      <a-textarea v-model:value="formState.Description" />
+      <a-textarea :rows="6" v-model:value="formState.Description" />
     </a-form-item>
     <a-form-item :wrapper-col="{ ...layout.wrapperCol, offset: 8 }">
       <a-button type="primary" html-type="submit">Submit</a-button>

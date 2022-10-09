@@ -33,12 +33,11 @@
             <template #description>NT${{ item.itemList.Price }}</template>
           </a-card-meta>
           <template #actions>
-            <span v-for="{ type, text } in actions" :key="type">
+            <!-- <span v-for="{ type, text } in actions" :key="type">
               <component :is="type" style="margin-right: 8px" />
               {{ text }}
             </span>
-            <setting-outlined key="setting" />
-            <edit-outlined key="edit" />
+            <setting-outlined key="setting" /> -->
             <edit-outlined
               key="edit"
               @click="
@@ -57,10 +56,10 @@
 import { defineComponent } from 'vue'
 import { mapActions, mapGetters } from 'vuex'
 import {
-  StarOutlined,
-  LikeOutlined,
-  MessageOutlined,
-  SettingOutlined,
+  // StarOutlined,
+  // LikeOutlined,
+  // MessageOutlined,
+  // SettingOutlined,
   EditOutlined,
   DeleteOutlined,
 } from '@ant-design/icons-vue'
@@ -68,10 +67,10 @@ import {
 export default defineComponent({
   name: 'Store-page',
   components: {
-    StarOutlined,
-    LikeOutlined,
-    MessageOutlined,
-    SettingOutlined,
+    // StarOutlined,
+    // LikeOutlined,
+    // MessageOutlined,
+    // SettingOutlined,
     EditOutlined,
     DeleteOutlined,
   },
