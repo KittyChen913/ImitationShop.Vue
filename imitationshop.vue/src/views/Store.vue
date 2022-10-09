@@ -21,7 +21,7 @@
     :data-source="getStoreItemList"
   >
     <template #renderItem="{ item }">
-      <a-list-item key="item.StoreId">
+      <a-list-item key="item.storeId">
         <a-card hoverable>
           <template #cover>
             <img
@@ -39,6 +39,7 @@
             </span>
             <setting-outlined key="setting" />
             <edit-outlined key="edit" />
+            <delete-outlined key="delete" @click="DeleteStoreItem(item)" />
           </template>
         </a-card>
       </a-list-item>
@@ -55,6 +56,7 @@ import {
   MessageOutlined,
   SettingOutlined,
   EditOutlined,
+  DeleteOutlined,
 } from '@ant-design/icons-vue'
 
 export default defineComponent({
@@ -65,6 +67,7 @@ export default defineComponent({
     MessageOutlined,
     SettingOutlined,
     EditOutlined,
+    DeleteOutlined,
   },
   computed: {
     ...mapGetters(['getStoreItemList']),
@@ -72,6 +75,7 @@ export default defineComponent({
   methods: {
     ...mapActions(['fetchItemList']),
     ...mapActions(['fetchStoreItemList']),
+    ...mapActions(['DeleteStoreItem']),
   },
   created() {
     this.fetchItemList()

@@ -13,7 +13,7 @@ export default createStore({
   getters: {
     getStoreItemList(state) {
       return state.storeItemList.map((store: any) => ({
-        storeId: store.ItemId,
+        storeId: store.StoreId,
         itemList: state.items.find((item: any) => item.ItemId === store.ItemId)
       }));
     }
@@ -69,6 +69,24 @@ export default createStore({
           else {
             alert('This item add successfully.')
             router.push({ path: `/Store` }).then(() => { window.location.origin })
+          }
+        })
+    },
+    DeleteStoreItem(context, payload) {
+      fetch('https://localhost:7227/api/Store/DeleteStoreItem', {
+        method: "POST",
+        body: JSON.stringify({
+          "RequestId": uuidv4(), "Data": { "ItemId": payload.itemList.ItemId, "UserId": localStorage.UserId, "StoreId": payload.storeId }
+        })
+      })
+        .then(async response => {
+          const responseData = await response.json()
+          if (!response.ok) {
+            alert(responseData.ErrorMessage)
+          }
+          else {
+            alert('This item delete successfully.')
+            router.go(0)
           }
         })
     },
