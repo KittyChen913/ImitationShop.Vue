@@ -22,7 +22,7 @@
   >
     <template #renderItem="{ item }">
       <a-list-item key="item.storeId">
-        <a-card hoverable>
+        <a-card hoverable @click="goToItemDetail(item.itemList.ItemId)">
           <template #cover>
             <img
               alt="example"
@@ -81,6 +81,9 @@ export default defineComponent({
     ...mapActions(['fetchItemList']),
     ...mapActions(['fetchStoreItemList']),
     ...mapActions(['DeleteStoreItem']),
+    goToItemDetail(itemId: never) {
+      this.$router.push({ path: `/itemDetail/${itemId}` })
+    },
   },
   created() {
     this.fetchItemList()
