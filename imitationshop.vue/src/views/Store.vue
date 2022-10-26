@@ -22,10 +22,11 @@
   >
     <template #renderItem="{ item }">
       <a-list-item key="item.storeId">
-        <a-card hoverable @click="goToItemDetail(item.itemList.ItemId)">
+        <a-card hoverable>
           <template #cover>
             <img
               alt="example"
+               @click="goToItemDetail(item.itemList.ItemId)"
               src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
             />
           </template>
